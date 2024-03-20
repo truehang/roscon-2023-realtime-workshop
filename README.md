@@ -70,8 +70,8 @@ You must also install Docker such that you can manage docker without root. [See 
 
 ### Getting the image BEFORE the workshop
 
-1. Download the image file from [the latest release](https://github.com/ros-realtime/roscon-2023-realtime-workshop/releases/latest). The file is called `docker-image.tar.gz`.
-2. Clone the [roscon-2023-realtime-workshop](https://github.com/ros-realtime/roscon-2023-realtime-workshop) repository with `--recursive` option: `git clone --recursive https://github.com/ros-realtime/roscon-2023-realtime-workshop.git`.
+1. Download the image file from [the latest release](https://github.com/ros-realtime/roscon-2023-realtime-workshop/releases/latest). The file is called `docker-image.tar.gz`, (wget  https://github.com/ros-realtime/roscon-2023-realtime-workshop/releases/download/roscon-release-1009/docker-image.tar.gz ).
+2. Clone the [roscon-2023-realtime-workshop](https://github.com/ros-realtime/roscon-2023-realtime-workshop) repository with `--recursive` option: `git clone --recursive git@github.com:truehang/roscon-2023-realtime-workshop.git`.
 3. `cd` into the `roscon-2023-realtime-workshop` repository.
 4. `docker/fetch ~/Downloads/docker-image.tar.gz`.
 
