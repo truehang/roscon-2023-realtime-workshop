@@ -40,6 +40,10 @@ CameraProcessingNode::CameraProcessingNode(
 
   // TODO: Set the object detecting subscription to high priority
   //       Look at the actuation node for example code
+  
+  sched_param sp;
+  sp.sched_priority = HIGH;
+  subscription_object_detector_->sched_param(sp);
 }
 
 void CameraProcessingNode::ObjectDetectorCallback(const FakeImage::SharedPtr image) {

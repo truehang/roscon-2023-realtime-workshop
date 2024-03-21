@@ -24,6 +24,11 @@ int main(int argc, char** argv) {
   // TODO: Create executor, add two nodes to it, and call spin() on executor
   //       Find example code here: https://docs.ros.org/en/foxy/Concepts/About-Executors.html#basic-use
 
+  rclcpp::executors::SingleThreadedExecutor executor;
+  executor.add_node(camera_processing_node);
+  executor.add_node(actuation_node);
+  executor.spin();
+
   rclcpp::shutdown();
   StopTracing();
 

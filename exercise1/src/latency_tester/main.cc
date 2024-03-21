@@ -9,10 +9,10 @@ const char* kAppName = "LatencyTester";
 cactus_rt::CyclicThreadConfig CreateRtThreadConfig(uint32_t index) {
   cactus_rt::CyclicThreadConfig config;
 
-  config.SetOtherScheduler();
+//  config.SetOtherScheduler();
 
   // Uncomment the following line to use the real-time scheduler
-  // config.SetFifoScheduler(80);
+   config.SetFifoScheduler(80);
 
   config.cpu_affinity = {index};
 

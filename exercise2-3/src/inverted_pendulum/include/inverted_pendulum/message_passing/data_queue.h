@@ -21,9 +21,10 @@ struct DataQueue {
   // try_emplace(timestamp, output_value) method (guaranteed to never allocate)
   // try_emplace will return true if the element was emplaced, false otherwise.
   bool EmplaceData(struct timespec timestamp, double output_value) noexcept {
-    std::scoped_lock lock(mutex_);
-    queue_.emplace(timestamp, output_value);
-    return true;
+//    std::scoped_lock lock(mutex_);
+//    queue_.emplace(timestamp, output_value);
+//    return true;
+	  return queue_.try_emplace(timestamp, output_value);
   }
 
   // Exercise 2-3: Remove the lock in this function and use the lockfree queue's
@@ -31,14 +32,15 @@ struct DataQueue {
   // try_dequeue will attempt to dequeue an element; if the queue is empty, it
   // returns false.
   bool PopData(OutputData& data) {
-    std::scoped_lock lock(mutex_);
-    WasteTime(std::chrono::microseconds(200));  // Simulate doing some work
-    if (queue_.size() == 0) {
-      return false;
-    }
-    data = queue_.front();
-    queue_.pop();
-    return true;
+    //std::scoped_lock lock(mutex_);
+    //WasteTime(std::chrono::microseconds(200));  // Simulate doing some work
+    //if (queue_.size() == 0) {
+    //  return false;
+    //}
+    //data = queue_.front();
+    //queue_.pop();
+    //return true;
+    return queue_.try_dequeue(data);
   }
 
   void WasteTime(std::chrono::microseconds duration) {
@@ -53,8 +55,9 @@ struct DataQueue {
   // A lockfree queue implementation is available as moodycamel::ReaderWriterQueue
   // Remember to pre-allocate memory for the queue.
   // A queue size of 8'192 can be used for this exercise
-  std::queue<OutputData> queue_;
-  std::mutex             mutex_;
+  //std::queue<OutputData> queue_;
+  //std::mutex             mutex_;
+  ReaderWriterQueue<OutputData> queue_ = ReaderWriterQueue<OutputData>(8192);
 };
 
 #endif
